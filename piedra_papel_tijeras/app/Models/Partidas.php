@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Partidas extends Model
 {
     use HasFactory;
+
+    protected $table = "table_partidas"; 
 }

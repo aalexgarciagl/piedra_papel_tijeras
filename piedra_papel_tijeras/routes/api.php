@@ -17,3 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::prefix('usuarios')->group(function () {
+    Route::get("",[ControllerUsuarios::class,"getUsers"]);  
+    Route::get("{id}",[ControllerUsuarios::class,"getUser"]); 
+    Route::post("",[ControllerUsuarios::class,"setUser"]); 
+    Route::delete("{id]",[ControllerUsuarios::class,"deleteUser"]); 
+    Route::put("{id}",[ControllerUsuarios::class,"updateUser"]); 
+});

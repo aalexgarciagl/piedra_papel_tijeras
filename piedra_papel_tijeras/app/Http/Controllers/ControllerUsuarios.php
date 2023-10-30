@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Hash;
 class ControllerUsuarios extends Controller
 {
     function getUsers(){
-        $usuarios = Usuarios::all(); 
+        $usuarios = Usuarios::select('id', 'nombre', 'partidas_jugadas', 'partidas_ganadas')->get();
         return response()->json($usuarios); 
     }
 
     function getUser($id){
-        $usuario = Usuarios::find($id); 
+        $usuario = Usuarios::select('id', 'nombre', 'partidas_jugadas', 'partidas_ganadas')->get()->where("id",$id);
         return response()->json($usuario); 
     }
 
@@ -25,12 +25,20 @@ class ControllerUsuarios extends Controller
         $newUser ->partidas_jugadas = 0; 
         $newUser ->partidas_ganadas = 0;     
         $newUser ->rol = 0;
-        $newUser->save();   
+        if($newUser->save()){
+            return true; 
+        }else{
+            return false; 
+        }
     }
 
     function deleteUser($id){
         $usuario = Usuarios::find($id);
-        $usuario->delete();         
+        if($usuario->delete()){
+            return true;
+        }else{
+            return false; 
+        }
     }
 
     function updateUser($id, Request $request){
@@ -40,6 +48,10 @@ class ControllerUsuarios extends Controller
         $usuario->partidas_jugadas = $request->partidas_jugadas; 
         $usuario->partidas_ganadas = $request->partidas_ganadas;   
         $usuario->rol = $request->rol; 
-        $usuario->save();       
+        if($usuario->save())       {
+            return true;
+        }else{
+            return false; 
+        }
     }
 }

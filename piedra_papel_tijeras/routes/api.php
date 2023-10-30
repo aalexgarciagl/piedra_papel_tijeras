@@ -28,3 +28,12 @@ Route::prefix('usuarios')->group(function () {
     Route::delete("{id]",[ControllerUsuarios::class,"deleteUser"]); 
     Route::put("{id}",[ControllerUsuarios::class,"updateUser"]); 
 });
+
+
+Route::prefix('partida')->group(function () {
+    Route::get('{id}',[ControllerPartida::class,'getPartida']); 
+    Route::get('ranking',[ControllerPartida::class,'showRanking']); 
+    Route::get('ranking/{id}',[ControllerPartida::class,'showRankingPlayer']); 
+    Route::post('crearPartida',[ControllerPartida::class,'crearPartida']); 
+    Route::post('tirada',[ControllerPartida::class,'tirada']); 
+});

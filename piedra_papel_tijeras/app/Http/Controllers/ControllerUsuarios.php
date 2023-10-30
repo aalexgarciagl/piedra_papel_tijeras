@@ -11,4 +11,9 @@ class ControllerUsuarios extends Controller
         $usuarios = Usuarios::all(); 
         return response()->json($usuarios); 
     }
+
+    function getUser($id){
+        $usuario = Usuarios::find($id); 
+        return response()->json($usuario); 
+    }
 }

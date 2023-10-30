@@ -27,4 +27,9 @@ class ControllerUsuarios extends Controller
         $newUser ->rol = 0;
         $newUser->save();   
     }
+
+    function deleteUser($id){
+        $usuario = Usuarios::find($id);
+        $usuario->delete();         
+    }
 }

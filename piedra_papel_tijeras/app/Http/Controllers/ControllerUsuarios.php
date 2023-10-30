@@ -32,4 +32,14 @@ class ControllerUsuarios extends Controller
         $usuario = Usuarios::find($id);
         $usuario->delete();         
     }
+
+    function updateUser($id, Request $request){
+        $usuario = Usuarios::find($id); 
+        $usuario->nombre = $request->nombre;
+        $usuario->password = Hash::make($request->password);
+        $usuario->partidas_jugadas = $request->partidas_jugadas; 
+        $usuario->partidas_ganadas = $request->partidas_ganadas;   
+        $usuario->rol = $request->rol; 
+        $usuario->save();       
+    }
 }

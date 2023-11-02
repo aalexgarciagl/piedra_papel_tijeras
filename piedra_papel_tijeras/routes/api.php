@@ -22,19 +22,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::prefix('usuarios')->group(function () {
+Route::prefix('usuarios/')->group(function () {
     Route::get("",[ControllerUsuarios::class,"getUsers"]);  
-    Route::get("{id}",[ControllerUsuarios::class,"getUser"]); 
     Route::post("",[ControllerUsuarios::class,"setUser"]); 
     Route::delete("{id]",[ControllerUsuarios::class,"deleteUser"]); 
+    Route::get("{id}",[ControllerUsuarios::class,"getUser"]); 
     Route::put("{id}",[ControllerUsuarios::class,"updateUser"]); 
 });
 
 
-Route::prefix('partida')->group(function () {
-    Route::get('{id}',[ControllerPartida::class,'getPartida']); 
-    Route::get('ranking',[ControllerPartida::class,'showRanking']); 
+Route::prefix('partida/')->group(function () {
+    Route::get("ranking",[ControllerPartida::class,'showRanking']);    
+    Route::post("crearPartida",[ControllerPartida::class,'crearPartida']); 
     Route::get('ranking/{id}',[ControllerPartida::class,'showRankingPlayer']); 
-    Route::post('crearPartida',[ControllerPartida::class,'crearPartida']); 
     Route::post('tirada',[ControllerPartida::class,'tirada']); 
+    Route::get('{id}',[ControllerPartida::class,'getPartida']); 
 });
